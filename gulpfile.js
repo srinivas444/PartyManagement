@@ -2,37 +2,23 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const webserver = require('gulp-webserver');
 
-gulp.task('default', ['libs', 'bower', 'transpileHTML', 'transpileCSS', 'transpileJS', 'transpileComponents'], function () {});
+gulp.task('default', ['libs', 'bower', 'transpileHTML', 'transpileCSS', 'transpileJS'], function () {});
 
 gulp.task('transpileJS', [], function () {
-    gulp.src('src/**/*.js')
+    gulp.src(['src/**/*.js', 'src/**/*.component.js'])
         .pipe(babel({
             presets: ['es2015']
         }))
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('transpileComponents', [], function () {
-    gulp.src(['src/components/**/*.component.js', 'src/components/**/*.controller.js'])
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('build/components'));
-
-    gulp.src('src/components/**/*.template.html')
-        .pipe(gulp.dest('build/components'));
-
-    gulp.src('src/components/**/*.template.css')
-        .pipe(gulp.dest('build/components'));
-});
-
 gulp.task('transpileHTML', [], function () {
-    gulp.src('src/**/*.html')
+    gulp.src(['src/**/*.html', 'src/**/*.component.html'])
         .pipe(gulp.dest('build'));
 });
 
 gulp.task('transpileCSS', [], function () {
-    gulp.src('src/**/*.css')
+    gulp.src(['src/**/*.css', 'src/**/*.component.css'])
         .pipe(gulp.dest('build'));
 });
 
