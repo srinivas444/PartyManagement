@@ -1,4 +1,5 @@
 <html>
+
 <head>
 
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -7,29 +8,53 @@
 
     <title>Party planners</title>
 
-    <!-->Styles</!-->
+    <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 
+    <!-- Polyfill for commonJS modules -->
+    <script src="libs/polyfill.js"></script>
+    <script src="libs/system.js"></script>
+    <script>
+        // set our baseURL reference path
+        System.config({
+            packages: {
+                js: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                },
+            },
+            meta: {
+                // our modules have been transpiled to commonJS
+                '**/*': {
+                    format: 'cjs'
+                }
+            }
+        });
+    </script>
+
 </head>
-<body>
 
-    <ng-view>
+<body ng-app="app">
 
-    </ng-view>
-
+    <ui-view></ui-view>
     
-    <!-->Scripts</!-->
+    <!-- Scripts -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="../bower_components/angular-ui-bootstrap/index.js"></script>
     <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 
-    
-    <!-->Components</!-->
+
+    <!-- Components -->
+    <script src="./app.js"></script>
+    <script src="./components/home/home.component.js"></script>
+    <script src="./components/about/about.component.js"></script>
+    <script src="./app.routes.js"></script>
 
 </body>
+
 </html>
