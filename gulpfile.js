@@ -38,7 +38,8 @@ gulp.task('libs', [], function () {
 gulp.task('serve', [], function () {
     gulp.src('build')
         .pipe(webserver({
-            open: true
+            open: true,
+            port: 8080
         })).on('error', onError);
 
 });
